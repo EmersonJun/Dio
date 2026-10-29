@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saborê — pedidos com carinho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Saborê início"><span class="brand-mark">S</span><span>Saborê</span></a>
+    <nav aria-label="Navegação principal"><a class="active" href="#menu">Cardápio</a><a href="#como-funciona">Como funciona</a></nav>
+    <button class="cart-button" id="open-cart" aria-label="Abrir sacola">Sacola <span id="cart-count">0</span></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">COMIDA DE VERDADE, SEM COMPLICAÇÃO</p>
+        <h1>Seu próximo<br><em>prato favorito</em><br>está aqui.</h1>
+        <p>Escolha com calma, peça em poucos passos e acompanhe tudo até chegar à sua porta.</p>
+        <a class="primary-link" href="#menu">Explorar cardápio <span>↗</span></a>
+        <div class="hero-meta"><span>✦ Feito na hora</span><span>◷ 30–45 min</span><span>♡ Ingredientes frescos</span></div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Ilustração de uma pizza artesanal">
+        <div class="hero-circle"></div><div class="hero-label">DA NOSSA<br>COZINHA<br>PARA VOCÊ</div>
+        <div class="pizza"><div class="crust"></div><div class="topping t1"></div><div class="topping t2"></div><div class="topping t3"></div><div class="topping t4"></div><div class="leaf l1"></div><div class="leaf l2"></div></div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="section-heading"><div><p class="eyebrow">FEITO COM AFETO</p><h2>O que vai ser hoje?</h2></div><p class="muted">Receitas queridinhas, ingredientes frescos<br>e aquele sabor que conforta.</p></div>
+      <div class="filters" role="group" aria-label="Filtrar cardápio">
+        <button class="filter active" data-filter="todos">Todos</button><button class="filter" data-filter="pizza">Pizzas</button><button class="filter" data-filter="acompanhamento">Acompanhamentos</button><button class="filter" data-filter="bebida">Bebidas</button>
+      </div>
+      <div class="product-grid" id="products">
+        <article class="product-card" data-category="pizza" data-name="Margherita" data-price="42">
+          <div class="product-art pizza-art margherita"><span class="food-pizza"></span><span class="food-leaf"></span></div><div class="product-info"><div><h3>Margherita</h3><p>Molho da casa, muçarela, tomate e manjericão.</p></div><div class="product-bottom"><strong>R$ 42,00</strong><button class="add" aria-label="Adicionar Margherita">+</button></div>
+        </article>
+        <article class="product-card" data-category="pizza" data-name="Calabresa da Casa" data-price="46">
+          <div class="product-art pizza-art calabresa"><span class="food-pizza"></span><span class="onion"></span></div><div class="product-info"><div><h3>Calabresa da Casa</h3><p>Calabresa artesanal, cebola roxa e orégano.</p></div><div class="product-bottom"><strong>R$ 46,00</strong><button class="add" aria-label="Adicionar Calabresa da Casa">+</button></div>
+        </article>
+        <article class="product-card" data-category="acompanhamento" data-name="Batatas rústicas" data-price="18">
+          <div class="product-art potato-art"><span>🍟</span></div><div class="product-info"><div><h3>Batatas rústicas</h3><p>Batatas douradas com páprica e alecrim.</p></div><div class="product-bottom"><strong>R$ 18,00</strong><button class="add" aria-label="Adicionar Batatas rústicas">+</button></div>
+        </article>
+        <article class="product-card" data-category="bebida" data-name="Limonada fresca" data-price="12">
+          <div class="product-art drink-art"><span>🍋</span></div><div class="product-info"><div><h3>Limonada fresca</h3><p>Limão espremido na hora, leve e geladinho.</p></div><div class="product-bottom"><strong>R$ 12,00</strong><button class="add" aria-label="Adicionar Limonada fresca">+</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="how" id="como-funciona"><div><p class="eyebrow">SIMPLES ASSIM</p><h2>Da escolha à entrega,<br>sem perder o sabor.</h2></div><div class="steps"><div><span>01</span><h3>Escolha seus favoritos</h3><p>Explore o cardápio e adicione o que der vontade.</p></div><div><span>02</span><h3>Confira sua sacola</h3><p>Revise os itens, quantidades e endereço.</p></div><div><span>03</span><h3>Acompanhe seu pedido</h3><p>Veja o status até a comida chegar.</p></div></div></section>
+  </main>
+  <footer><a class="brand" href="#"><span class="brand-mark">S</span><span>Saborê</span></a><p>Comida boa aproxima. ♡</p><small>Protótipo acadêmico — dados e preços fictícios.</small></footer>
+
+  <div class="overlay" id="overlay" hidden>
+    <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-header"><div><p class="eyebrow">SEU PEDIDO</p><h2 id="cart-title">Sua sacola</h2></div><button class="close" id="close-cart" aria-label="Fechar sacola">×</button></div>
+      <div id="cart-items" class="cart-items"><p class="empty">Sua sacola está vazia. Que tal escolher algo gostoso?</p></div>
+      <div class="cart-footer"><div class="subtotal"><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div><p class="delivery-note">Entrega calculada na próxima etapa: R$ 6,00</p><button class="checkout" id="checkout">Continuar para entrega</button></div>
+    </aside>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
