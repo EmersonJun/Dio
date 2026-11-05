@@ -1,87 +1,87 @@
-# DIO Spring Boot - Final Project 05: Spring AI (budgeting)
+# DIO Spring Boot - Projeto Final 05: Spring AI (orçamento)
 
-> Adaptado do projeto original da trilha DIO: toolchain Java 21 (em vez de 25) e persistência em PostgreSQL (em vez de MySQL). O restante da arquitetura e do comportamento foi mantido idêntico.
+> Adaptado do projeto original da trilha DIO: utilização do Java 21 (em vez do Java 25) e persistência de dados com PostgreSQL (em vez de MySQL). O restante da arquitetura e do comportamento foi mantido idêntico.
 
-## Introduction
+## Introdução
 
-This final module applies Spring AI in a budgeting API while preserving the same layered architecture used across the track.
+Este módulo final aplica o Spring AI em uma API de gerenciamento financeiro, mantendo a mesma arquitetura em camadas utilizada ao longo da trilha.
 
-The goal is to integrate AI capabilities without bypassing domain and use case boundaries.
+O objetivo é integrar recursos de Inteligência Artificial sem ultrapassar os limites das camadas de domínio e dos casos de uso da aplicação.
 
-## Code Context
+## Contexto do código
 
-The project processes voice commands to create and query financial transactions.
+O projeto processa comandos de voz para criar e consultar transações financeiras.
 
-Primary flow:
+**Fluxo principal:**
 
-1. Client uploads an audio file.
-2. Audio is transcribed into text.
-3. The model selects an application tool/use case.
-4. The use case persists or queries transaction data.
-5. The final response is converted to audio.
+1. O cliente envia um arquivo de áudio.
+2. O áudio é transcrito para texto.
+3. O modelo seleciona uma ferramenta ou caso de uso da aplicação.
+4. O caso de uso salva ou consulta os dados das transações.
+5. A resposta final é convertida em áudio.
 
-## Project Structure
+## Estrutura do projeto
 
 - `src/main/java/dio/budgeting/domain`
-  - Domain model and repository contract.
+  - Modelo de domínio e contrato do repositório.
 - `src/main/java/dio/budgeting/application`
-  - Use cases used by both REST and AI tool calling.
+  - Casos de uso utilizados tanto pelos adaptadores REST quanto pelo recurso de chamada de ferramentas da IA.
 - `src/main/java/dio/budgeting/infrastructure`
-  - HTTP adapters, JPA adapters, and integration glue.
+  - Adaptadores HTTP, adaptadores JPA e componentes de integração.
 
-## Module-Specific Topics
+## Tópicos específicos do módulo
 
-### Speech-to-text
+### Conversão de áudio em texto (Speech-to-Text)
 
-- Uses `TranscriptionModel` for audio transcription.
-- Model settings are configured in `application.properties`.
+- Utiliza `TranscriptionModel` para realizar a transcrição de áudio.
+- As configurações do modelo são definidas no arquivo `application.properties`.
 
-### Tool calling
+### Chamada de ferramentas (Tool Calling)
 
-- `ChatClient` registers use-case tools.
-- `@Tool` methods expose business capabilities to the model.
+- O `ChatClient` registra as ferramentas disponibilizadas pelos casos de uso.
+- Métodos anotados com `@Tool` expõem as funcionalidades de negócio para o modelo de IA.
 
-### Text-to-speech
+### Conversão de texto em áudio (Text-to-Speech)
 
-- `TextToSpeechModel` produces MP3 output from final text.
-- AI endpoint returns generated audio.
+- O `TextToSpeechModel` gera arquivos de áudio no formato MP3 a partir do texto da resposta final.
+- O endpoint de IA retorna o áudio gerado.
 
-## Spring AI Documentation
+## Documentação do Spring AI
 
 - Spring AI Reference: https://docs.spring.io/spring-ai/reference/index.html
-- ChatModel API: https://docs.spring.io/spring-ai/reference/api/chatmodel.html
-- ChatClient API: https://docs.spring.io/spring-ai/reference/api/chatclient.html
-- Tools API: https://docs.spring.io/spring-ai/reference/api/tools.html
-- Audio Transcriptions API: https://docs.spring.io/spring-ai/reference/api/audio/transcriptions.html
-- Audio Speech API: https://docs.spring.io/spring-ai/reference/api/audio/speech.html
+- API ChatModel: https://docs.spring.io/spring-ai/reference/api/chatmodel.html
+- API ChatClient: https://docs.spring.io/spring-ai/reference/api/chatclient.html
+- API Tools: https://docs.spring.io/spring-ai/reference/api/tools.html
+- API de transcrição de áudio: https://docs.spring.io/spring-ai/reference/api/audio/transcriptions.html
+- API de geração de áudio: https://docs.spring.io/spring-ai/reference/api/audio/speech.html
 
-## Shared Architecture References
+## Referências da arquitetura compartilhada
 
-Common architecture concepts are documented in the root README:
+Os conceitos gerais de arquitetura estão documentados no README principal do projeto:
 
-- [DDD layers](../README.md#ddd-layered-architecture)
-- [Class vs record](../README.md#java-class-vs-java-record-in-domain-modeling)
-- [Strong typed identifiers](../README.md#strong-typed-identifiers)
-- [Repository pattern](../README.md#repository-pattern)
-- [Use cases and Clean Architecture](../README.md#use-cases-and-clean-architecture)
-- [Docker Compose support](../README.md#docker-compose-support-in-development)
+- [Camadas DDD (Domain-Driven Design)](../README.md#ddd-layered-architecture)
+- [Classe vs. Record](../README.md#java-class-vs-java-record-in-domain-modeling)
+- [Identificadores fortemente tipados](../README.md#strong-typed-identifiers)
+- [Padrão Repository](../README.md#repository-pattern)
+- [Casos de uso e Clean Architecture](../README.md#use-cases-and-clean-architecture)
+- [Suporte ao Docker Compose no desenvolvimento](../README.md#docker-compose-support-in-development)
 
-## How to Run
+## Como executar
 
-Set your OpenAI API key:
+Configure sua chave de API da OpenAI:
 
 ```bash
-export OPENAI_API_KEY="your_api_key_here"
+export OPENAI_API_KEY="sua_chave_de_api_aqui"
 ```
 
-Run the application and tests:
+Execute a aplicação e os testes:
 
 ```bash
 ./gradlew bootRun
 ./gradlew test
 ```
 
-## Notes
+## Observações
 
-- Educational final project focused on AI plus architectural discipline.
-- External provider integration tests may require active credentials.
+- Projeto educacional final com foco na integração de Inteligência Artificial e na disciplina arquitetural.
+- Os testes de integração com provedores externos podem exigir credenciais válidas e ativas.
